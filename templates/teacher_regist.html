@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+      form{
+        text-align: center;
+      }
+      input{
+        text-align: center;
+      }
+      .container-fluid{
+        border: 1px solid red;
+        position: relative;
+        top: 60px;
+        padding: 20px;
+        width: 500px;
+        height: 700px;
+      }
+      #a1{
+        color: red;
+        text-decoration: none;
+      }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <a class="navbar-brand" href="#">SAS College</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="">Add-Course<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="">Add-Student</a>
+            <a class="nav-item nav-link " href="">Show-Student</a>
+            <a class="nav-item nav-link " href="">Show-Teachers</a>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a href="{% url 'logout' %}" id="a1">Logout</a></button>
+          </div>
+        </div>
+      </nav>
+      <center>
+        <h2>Teacher Registration</h2>
+        <div class="container-fluid">
+        
+        <form enctype="multipart/form-data" action="{% url 'add_teacher' %}" method="post">
+          {% csrf_token %}
+            <input type="text" placeholder="First name" name="tfna"><br><br>
+            <input type="text" placeholder="Last name" name="tlna"><br><br>
+            <input type="text" placeholder="User name" name="tuna"><br><br>
+            <input type="password" placeholder="Password" name="tpass"><br><br>
+            <input type="password" placeholder="confirm" name="tcpass"><br><br>
+            <input type="textarea" placeholder="address" name="tadd"><br><br>
+            <input type="number" placeholder="age" name="tage"><br><br>
+            <input type="text" placeholder="contact number" name="tcon"><br><br>
+            <input type="email" placeholder="email" name="tema"><br><br>
+            <select name="sel">
+              {% for c in cor %}
+                <option value="{{c.id}}">{{c.course_Name}}</option>
+                {% endfor %}
+            </select><br><br>
+            <input type="file" accept="image/*" name="timg"><br><br>
+            <button type="submit">Add Teacher</button>
+        </form>
+      </div>
+      </center>
+</body>
+</html>

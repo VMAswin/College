@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+      .container-fluid{
+        position: relative;
+        top: 150px;
+        background-color: whitesmoke;
+        padding: 20px;
+        width: 500px;
+        height: 300px;
+      }
+      #a1{
+        color: red;
+        text-decoration: none;
+      }
+      h2{
+        position: relative;
+        top: 110px;
+      }
+      body{
+        background-image: url('{% static "images/adm.jpg" %}');
+        background-size: 100%;
+      }
+      #b1{
+        border-style: ridge;
+        background-color: cadetblue;
+      }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <a class="navbar-brand" href="#">SAS College</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="{% url 'adco' %}">Add-Course<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="{% url 'adst' %}">Add-Student</a>
+            <a class="nav-item nav-link " href="{% url 'showstud' %}">Show-Student</a>
+            <a class="nav-item nav-link " href="{% url 'shte' %}">Show-Teachers</a>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a href="{% url 'logout' %}" id="a1">Logout</a></button>
+          </div>
+        </div>
+      </nav>
+      <center>
+        <h2>Add New Course</h2>
+        <div class="container-fluid">
+        <form action="{% url 'addcourse' %}" method="post">
+          {% csrf_token %}
+          <label>Course Name</label><br>
+            <input type="text"  name="cna"><br><br>
+            <label>Course Fees</label><br>
+            <input type="number"  name="cfe"><br><br>
+            <button type="submit" id="b1">Add Course</button>
+        </form>
+      </div>
+      </center>
+</body>
+</html>
